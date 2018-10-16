@@ -20,10 +20,14 @@ class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
+    this.getAccessToken = this.getAccessToken.bind(this);
   }
 
   getProfile() {
     return this.profile;
+  }
+  getAccessToken() {
+    return this.accessToken;
   }
 
   getIdToken() {
@@ -51,6 +55,7 @@ class Auth {
   setSession(authResult, step) {
     this.idToken = authResult.idToken;
     this.profile = authResult.idTokenPayload;
+    this.accessToken = authResult.accessToken;
     // set the time that the id token will expire at
     this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
   }

@@ -20,19 +20,20 @@ class Questions extends Component {
     // this.setState({
     //   questions,
     // });
-
-    // fetch("http://localhost:8081/", {
-    //   method: "GET",
-    //   headers: {
-    //     'Authorization': 'Bearer ' + DEMO_TOKEN
-    //   }
-    // })
-    // .then((response) => {
-    //   response.json();
-    // })
-    // .then(data => {
-    //   console.log(data);
-    // })
+    if (auth0Client.isAuthenticated()) {
+    fetch("http://localhost:8081/", {
+      method: "GET",
+      headers: {
+        'Authorization': 'Bearer ' + DEMO_TOKEN
+      }
+    })
+    .then((response) => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    }
   }
   // async _getProtectedQuote() {
   //   var DEMO_TOKEN = await AsyncStorage.getItem(STORAGE_KEY);
