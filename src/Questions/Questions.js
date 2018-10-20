@@ -21,18 +21,25 @@ class Questions extends Component {
     //   questions,
     // });
     if (auth0Client.isAuthenticated()) {
-    fetch("http://localhost:8081/", {
+    const response = await fetch("http://localhost:8081/", {
       method: "GET",
       headers: {
         'Authorization': 'Bearer ' + DEMO_TOKEN
       }
     })
-    .then((response) => {
-      return response.text();
+    const questions = await response.json();
+    this.setState({
+      questions,
     })
-    .then(data => {
-      console.log(data);
-    })
+    // .then((response) => {
+    //   return response.text();
+    // })
+    // .then(questions => {
+    //   this.setState({
+    //     questions,
+    //   });      
+    //   console.log(questions);
+    // })
     }
   }
   // async _getProtectedQuote() {
