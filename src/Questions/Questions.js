@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-//import axios from 'axios';
 import auth0Client from '../Auth';
 
 class Questions extends Component {
@@ -16,47 +15,19 @@ class Questions extends Component {
     const DEMO_TOKEN = auth0Client.getIdToken();
 
     console.log('DEMO_TOKEN=' + DEMO_TOKEN);
-    // const questions = (await axios.get('http://localhost:8081/')).data;
-    // this.setState({
-    //   questions,
-    // });
     if (auth0Client.isAuthenticated()) {
-    const response = await fetch("http://localhost:8081/", {
-      method: "GET",
-      headers: {
-        'Authorization': 'Bearer ' + DEMO_TOKEN
-      }
-    })
-    const questions = await response.json();
-    this.setState({
-      questions,
-    })
-    // .then((response) => {
-    //   return response.text();
-    // })
-    // .then(questions => {
-    //   this.setState({
-    //     questions,
-    //   });      
-    //   console.log(questions);
-    // })
+      const response = await fetch("http://localhost:8081/", {
+        method: "GET",
+        headers: {
+          'Authorization': 'Bearer ' + DEMO_TOKEN
+        }
+      })
+      const questions = await response.json();
+      this.setState({
+        questions,
+      })
     }
   }
-  // async _getProtectedQuote() {
-  //   var DEMO_TOKEN = await AsyncStorage.getItem(STORAGE_KEY);
-  //   fetch("http://localhost:3001/api/protected/random-quote", {
-  //     method: "GET",
-  //     headers: {
-  //       'Authorization': 'Bearer ' + DEMO_TOKEN
-  //     }
-  //   })
-  //   .then((response) => response.text())
-  //   .then((quote) => {
-  //     AlertIOS.alert(
-  //       "Chuck Norris Quote:", quote)
-  //   })
-  //   .done();
-  // },
 
   render() {
     return (
